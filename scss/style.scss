@@ -1,0 +1,337 @@
+$groundColor1: rgba(127, 63, 0, 1);
+$textFill: #ffc3b8;
+@mixin linearGradient ($color1: cornflowerblue, $color2: skyblue) {
+  background-image: -webkit-linear-gradient(to top, $color1, $color2);
+  background-image: -moz-linear-gradient(to top, $color1, $color2);
+  background-image: -o-linear-gradient(to top, $color1, $color2);
+  background-image: linear-gradient(to top, $color1, $color2);
+}
+
+@mixin sTransform($transformRule) {
+  -moz-transform: $transformRule;
+  -o-transform: $transformRule;
+  -ms-transform: $transformRule;
+  -webkit-transform: $transformRule;
+  transform: $transformRule;
+}
+
+@mixin noTouching($boolTouch: none) {
+  pointer-events: $boolTouch;
+  -webkit-user-select: $boolTouch;
+  -khtml-user-select: $boolTouch;
+  -moz-user-select: $boolTouch;
+  -ms-user-select: $boolTouch;
+  user-select: $boolTouch;
+}
+
+body {
+  position: relative;
+  width: 100%;
+  min-width: 100vw;
+  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+  @include noTouching();
+  cursor: initial!important;
+}
+
+#bodyWrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  @include linearGradient();
+  opacity: 0;
+  overflow: hidden;
+}
+
+#showPos {
+  position: fixed;
+  font-size: 2em;
+  color: green;
+  z-index: 2;
+  @include noTouching(initial);
+}
+
+#showSpeed {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  font-size: 2vw;
+  color: black;
+  font-family: VT323;
+}
+
+#controlText {
+  position: absolute;
+  left: 89.33%;
+  top: 1.85%;
+  z-index: 2;
+  overflow: hidden;
+  width: 7vw;
+  height: 4vw;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 10px;
+  padding-top: 3vw;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  font-family: VT323;
+  font-size: 1.5vw;
+  #controlTitle {
+    margin-top: -2vw;
+  }
+}
+
+#controlToggle {
+  position: absolute;
+  left: 97.52%;
+  top: 1.17%;
+  overflow: hidden;
+  z-index: 9999;
+  width: 20vw;
+  height: 20vw;
+  @include noTouching(initial);
+  @include sTransform(rotate(45deg) scale(.2));
+  transform-origin: 0% 0%;
+  &hover {
+    cursor: pointer!important;
+  }
+  .mainButton {
+    position: absolute;
+    top: 0%;
+    left: 0;
+    right: 0%;
+    bottom: 0%;
+    margin: auto;
+    background-color: transparent;
+    width: 6vw;
+    height: 6vw;
+    border-bottom: .5vw solid black;
+    border-right: .5vw solid black;
+    transform: rotate(90deg);
+    .iconX {
+      transform-origin: center;
+      transform: rotate(-45deg);
+      position: absolute;
+      top: .4vw;
+      left: -1.2vw;
+      right: 0%;
+      bottom: 0%;
+      margin: auto;
+      width: 8.2vw;
+      height: .5vw;
+      background-color: black;
+      border-radius: 10%;
+    }
+    .iconY {
+      transform-origin: center;
+      transform: rotate(45deg);
+      position: absolute;
+      top: -1.5vw;
+      left: -3vw;
+      right: 0%;
+      bottom: 0%;
+      margin: auto;
+      width: 10vw;
+      height: .5vw;
+      background-color: black;
+    }
+  }
+}
+
+#hud {
+  opacity: 0;
+  position: absolute;
+  left: 2.03%;
+  top: -699.1%;
+  font-family: VT323;
+  font-size: 4vw;
+  color: white;
+  #hud1 {
+    width: 18vw;
+    #hudScore {
+      position: absolute;
+      left: 0;
+      top: 3vw;
+    }
+  }
+  #hud2 {
+    position: absolute;
+    width: 18vw;
+    left: 14vw;
+    top: 3vw;
+    #ringRoot {
+      transform-origin: 50% 50%;
+      width: 3vw;
+      height: 3vw;
+    }
+  }
+  #hud3 {
+    position: absolute;
+    width: 18vw;
+    top: 0vw;
+    left: 27vw;
+    #hudLevel {
+      text-align: center;
+      width: 5vw;
+      position: absolute;
+      left: 1.8vw;
+      top: 3vw;
+    }
+  }
+  #hud4 {
+    position: absolute;
+    width: 18vw;
+    top: 0vw;
+    left: 39vw;
+  }
+}
+
+#base {
+  position: absolute;
+  left: 0;
+  bottom: 0%;
+  width: 1200vw;
+  height: 6vw;
+  background-color: $groundColor1;
+  border-top: 1vw solid green;
+  box-shadow: 0 0 .1vw .1vw rgba(12, 12, 12, .7);
+  box-sizing: content-box;
+  .ground {
+    height: 6vw;
+    width: 6vw;
+    z-index: -2!important;
+  }
+}
+
+#sanicWrapper {
+  width: 8vw;
+  height: 8vw;
+  position: absolute;
+  left: calc(50vw - 4vw);
+  top: calc(-120.9% - 1vw);
+  opacity: 0;
+  &.spinning {
+    animation: spinSanic .5s linear infinite;
+    top: calc(-114.9% - 2vw)!important;
+  }
+  #sanic {
+    svg {
+      position: absolute;
+      width: 8vw;
+      height: 8vw;
+      z-index: 1;
+    }
+  }
+}
+
+.cloud {
+  width: 12vw;
+  height: 12vw;
+}
+
+#cloud1 {
+  position: absolute;
+  left: 0.53%;
+  svg {
+    opacity: 0;
+  }
+  top: -600.65%;
+}
+
+#cloud2Wrapper {
+  position: absolute;
+  left: 0.53%;
+  top: -557.62%;
+  width: 12vw;
+  height: 12vw;
+  z-index: 1000!important;
+  transform-origin: left;
+  @include sTransform(rotateY(180deg) translateX(-7vw));
+}
+
+#cloud2 {
+  position: fixed;
+  animation-delay: 4s;
+  svg {
+    width: 8vw;
+    height: 8vw;
+    opacity: 0;
+  }
+}
+
+.ground:nth-child(even) {
+  @include sTransform(rotate(15deg) translateY(.7vw));
+}
+
+.ground:nth-child(odd) {
+  @include sTransform(rotate(-15deg) translateY(.7vw));
+}
+
+#shrubbery {
+  position: absolute;
+  left: 5.47%;
+  top: -230%;
+  z-index: -1;
+  transform-origin: 50% 100%;
+  @include sTransform(scale(0));
+  svg {
+    width: 31vw;
+    height: 15vw;
+  }
+}
+
+#animateGWrapper {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
+#sanicTextWrapper {
+  z-index: 500000;
+  z-index: -1;
+  position: absolute;
+  left: 1.99%;
+  top: -666.9%;
+  #sanicTextBox {
+    opacity: 0;
+    width: 60vw;
+    height: 30vw;
+    text {
+      font-family: 'Passion One';
+    }
+    .mainText {
+      fill: $textFill;
+    }
+    .dropText {
+      -webkit-filter: url(#dropTextFilter);
+      filter: url(#dropTextFilter);
+    }
+  }
+}
+
+#hillWrapper {
+  z-index: -1;
+  position: absolute;
+  left: 0.04%;
+  top: -386.57%;
+  svg {
+    width: 30vw;
+    height: 30vw;
+  }
+  .blackdot {
+    opacity: 0;
+  }
+}
+
+#miniSanic {
+  opacity: 0;
+  position: absolute;
+  left: 48.09%;
+  top: 69.1%;
+  width: 1vw;
+  width: 1vw;
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
