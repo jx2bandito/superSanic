@@ -5,7 +5,7 @@
 when I was also learning SCSS. I didn't take advantage of all of SCSS features, but I used those that I felt were 
 relevant for this particular project.
 <br />
-<br />Project Page: https://jx2bandito.github.io/superSanic
+<br />Project page: https://jx2bandito.github.io/superSanic
 <br />
 
 
