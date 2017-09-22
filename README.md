@@ -5,9 +5,9 @@
 when I was also learning SCSS. I didn't take advantage of all of SCSS features, but I used those that I felt were 
 relevant for this particular project.
 <br />
-<br />Check it out at https://jx2bandito.github.io/superSanic.
+<br />Project Page: https://jx2bandito.github.io/superSanic
 <br />
-<br />Originally made in Codepen: https://codepen.io/jx2bandito/pen/YVzdrY.
+
 
 ### User Stories: <br />
 * User can view a short animation clip
